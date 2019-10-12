@@ -35,6 +35,10 @@ function _defineCdpPath() {
 
 		export CDPPATH=$userPath
 	fi;
+
+  if [ ! -d $CDPPATH ]; then
+    echo "[cdp] '$CDPPATH' not a directory, dying.">&2
+  fi;
 }
 
 _defineCdpPath
@@ -46,7 +50,7 @@ fi;
 
 if [ "$1" = "new" ]; then
 	newpath=$(pwd)
-	echo -n "$newpath" > $CDPPATH/$2
+	touch $CDPPATH/$2 && echo -n "$newpath" > $CDPPATH/$2
 	echo "[cdp] saved new path $2 to $newpath">&2
 	exit 1
 elif [ "$1" = "-h" ]; then
@@ -98,7 +102,7 @@ if [ ! -d $newPath ]; then
 	exit 1
 fi;
 
-pwd > $CDPPATH/.last
+touch $CDPPATH/.last && pwd > $CDPPATH/.last
 
 echo $newPath >&1
 exit 0
