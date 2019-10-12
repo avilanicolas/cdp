@@ -13,7 +13,7 @@ _CDP_DEFAULT=$HOME/paths
 
 function _defineCdpPath() {
 	if [ -z $CDPPATH ]; then
-		echo "[cdp] First time using cdp, defining: \$CDPATH">&2
+		echo "[cdp] First time using cdp, defining: \$CDPPATH">&2
 		echo "[cdp] No input to use the default path.">&2
 		echo -n "[$_CDP_DEFAULT]: ">&2
 
